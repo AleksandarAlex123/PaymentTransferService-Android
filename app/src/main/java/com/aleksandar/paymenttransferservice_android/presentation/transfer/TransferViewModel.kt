@@ -6,6 +6,7 @@ import com.aleksandar.paymenttransferservice_android.R
 import com.aleksandar.paymenttransferservice_android.core.AccountId
 import com.aleksandar.paymenttransferservice_android.core.Money
 import com.aleksandar.paymenttransferservice_android.core.util.ValidationHelper
+import com.aleksandar.paymenttransferservice_android.domain.repository.AccountRepository
 import com.aleksandar.paymenttransferservice_android.domain.repository.TransactionRepository
 import com.aleksandar.paymenttransferservice_android.domain.transfer.TransferError
 import com.aleksandar.paymenttransferservice_android.domain.transfer.TransferFundsUseCase
@@ -21,7 +22,8 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class TransferViewModel @Inject constructor(
     private val transferFundsUseCase: TransferFundsUseCase,
-    private val transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository,
+    private val accountRepository: AccountRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TransferUiState())
@@ -32,11 +34,25 @@ class TransferViewModel @Inject constructor(
     }
 
     fun onSourceAccountChanged(value: String) {
+        val trimmed = value.trim()
+
+        // reset field + clear previous errors and balance
         _uiState.value = _uiState.value.copy(
             sourceAccountId = value,
             sourceErrorResId = null,
+            sourceAccountBalance = null,
             isSuccess = false
         )
+
+        // If the input looks valid, try to resolve account and show its balance.
+        if (ValidationHelper.isValidAccountId(trimmed)) {
+            viewModelScope.launch {
+                val account = accountRepository.getById(AccountId(trimmed))
+                _uiState.value = _uiState.value.copy(
+                    sourceAccountBalance = account?.balance?.toString()
+                )
+            }
+        }
     }
 
     fun onDestinationAccountChanged(value: String) {

@@ -11,6 +11,7 @@ data class TransferUiState(
     val isLoading: Boolean = false,
     val isSuccess: Boolean = false,
     val transactions: List<Transaction> = emptyList(),
+    val sourceAccountBalance: String? = null,
 
     // Field-level errors as @StringRes ids
     @StringRes val sourceErrorResId: Int? = null,

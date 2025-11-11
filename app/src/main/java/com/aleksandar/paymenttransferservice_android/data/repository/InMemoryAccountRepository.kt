@@ -40,8 +40,25 @@ class InMemoryAccountRepository : AccountRepository {
             accountNumber = "100-000-0002",
             balance = Money.from(200.00)
         )
+
+        val acc3 = Account(
+            id = AccountId("ACC-003"),
+            fullName = "Joe Carlson",
+            accountNumber = "100-000-0003",
+            balance = Money.from(100.00)
+        )
+
+        val acc4 = Account(
+            id = AccountId("ACC-004"),
+            fullName = "LeBron James",
+            accountNumber = "100-000-0004",
+            balance = Money.from(50.00)
+        )
+
         accounts[acc1.id] = acc1
         accounts[acc2.id] = acc2
+        accounts[acc3.id] = acc3
+        accounts[acc4.id] = acc4
     }
 
     /**

@@ -52,14 +52,19 @@ fun TransferScreen(
             state.errorType != null -> when (state.errorType) {
                 TransferError.SourceNotFound ->
                     context.getString(R.string.error_source_not_found)
+
                 TransferError.DestinationNotFound ->
                     context.getString(R.string.error_destination_not_found)
+
                 TransferError.SameAccount ->
                     context.getString(R.string.error_same_account)
+
                 TransferError.InvalidAmount ->
                     context.getString(R.string.error_invalid_amount)
+
                 TransferError.InsufficientFunds ->
                     context.getString(R.string.error_insufficient_funds)
+
                 TransferError.Technical ->
                     context.getString(R.string.error_technical)
             }
@@ -89,6 +94,14 @@ fun TransferScreen(
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
+            if (state.sourceAccountBalance != null) {
+                Text(
+                    text = stringResource(R.string.available_balance, state.sourceAccountBalance),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
+
             // Source account input
             OutlinedTextField(
                 value = state.sourceAccountId,
