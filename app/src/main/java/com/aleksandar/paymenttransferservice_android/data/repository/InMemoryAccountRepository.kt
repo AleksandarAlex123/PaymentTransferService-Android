@@ -9,7 +9,7 @@ import kotlinx.coroutines.sync.withLock
 
 class InMemoryAccountRepository : AccountRepository {
 
-    // Internal data store
+    // Internal data store, just for this test task
     private val accounts = mutableMapOf<AccountId, Account>()
 
     private val mutex = Mutex()
@@ -26,9 +26,11 @@ class InMemoryAccountRepository : AccountRepository {
      * Helper for initializing accounts during demo/testing.
      */
     suspend fun addInitialAccounts() = mutex.withLock {
+        if (accounts.isNotEmpty()) return@withLock
+
         val acc1 = Account(
             id = AccountId("ACC-001"),
-            fullName = "John Doe",
+            fullName = "Aleksandar Adamovic",
             accountNumber = "100-000-0001",
             balance = Money.from(500.00)
         )

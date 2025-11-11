@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">PaymentTransferService-Android</string>
+    <string name="error_source_not_found">Source account not found.</string>
+    <string name="error_destination_not_found">Destination account not found.</string>
+    <string name="error_same_account">Source and destination accounts must be different.</string>
+    <string name="error_invalid_amount">Amount must be greater than 0.</string>
+    <string name="error_insufficient_funds">Insufficient funds on source account.</string>
+    <string name="error_technical">Unexpected error occurred. Please try again.</string>
+    <string name="hint_check_fields">Please check the highlighted fields.</string>
+    <string name="hint_check_amount">Please check the amount.</string>
+    <string name="success_transfer">Transfer successful.</string>
+    <string name="error_source_invalid_format">Invalid source account format.</string>
+    <string name="error_destination_invalid_format">Invalid destination account format.</string>
+    <string name="error_amount_invalid_format">Invalid amount format.</string>
+    <string name="error_amount_invalid_value">Invalid amount value.</string>
+    <string name="internal_payment_transfer">Internal Payment Transfer</string>
+    <string name="processing">Processing...</string>
+    <string name="transfer">Transfer</string>
+    <string name="recent_transfers">Recent transfers</string>
+    <string name="amount">Amount</string>
+    <string name="destination_account_id">Destination Account ID</string>
+    <string name="source_account_id">Source Account ID</string>
 </resources>

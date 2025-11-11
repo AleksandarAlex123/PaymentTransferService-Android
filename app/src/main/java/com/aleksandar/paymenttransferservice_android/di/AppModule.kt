@@ -19,12 +19,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAccountRepository(): AccountRepository {
-        // Placed in-memory accounts for demo purposes.
-        return InMemoryAccountRepository().also { repo ->
-            runBlocking {
-                repo.addInitialAccounts()
-            }
-        }
+        val repo = InMemoryAccountRepository()
+        runBlocking { repo.addInitialAccounts() }
+        return repo
     }
 
     @Provides

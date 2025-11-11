@@ -6,6 +6,7 @@ import java.math.BigDecimal
 value class Money(val value: BigDecimal) : Comparable<Money> {
 
     init {
+        // This is just debug error, not UI. No need to add in res
         require(value.scale() <= 2) { "Money supports up to 2 decimal places" }
     }
 

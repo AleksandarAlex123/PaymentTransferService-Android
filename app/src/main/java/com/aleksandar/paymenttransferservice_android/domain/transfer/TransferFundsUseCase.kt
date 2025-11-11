@@ -25,7 +25,6 @@ class TransferFundsUseCase(
 
     /**
      * Executes a fund transfer between two accounts.
-     *
      * @param request contains source, destination, and amount data
      * @return [TransferResult] representing success or failure of the operation
      */
@@ -75,12 +74,11 @@ class TransferFundsUseCase(
                     TransferResult.Success(transaction)
                 }
             }.getOrElse {
-                // In production, exceptions should be logged via Timber / Crashlytics
                 TransferResult.Failure(TransferError.Technical)
             }
         }
 
-    // Helper extensions to modify account balances immutably
+    // Helper extensions to modify account balances
     private fun Account.debit(amount: Money): Account =
         copy(balance = balance - amount)
 
