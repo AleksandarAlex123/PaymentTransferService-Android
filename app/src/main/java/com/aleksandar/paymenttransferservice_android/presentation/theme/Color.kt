@@ -1,4 +1,4 @@
-package com.aleksandar.paymenttransferservice_android.ui.theme
+package com.aleksandar.paymenttransferservice_android.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

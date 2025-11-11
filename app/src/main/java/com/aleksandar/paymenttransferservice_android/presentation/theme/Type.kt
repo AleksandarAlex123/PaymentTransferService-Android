@@ -1,4 +1,4 @@
-package com.aleksandar.paymenttransferservice_android.ui.theme
+package com.aleksandar.paymenttransferservice_android.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
